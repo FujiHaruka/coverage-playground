@@ -18,7 +18,8 @@ jobs:
           name: Run unit tests
           command: yarn test
 
-      - codecov/upload
+      - codecov/upload:
+          file: ./coverage/lcov.info
 
 workflows:
   default-workflow:

@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   node: circleci/node@5.0.2
+  codecov: codecov/codecov@3.2.3
 
 jobs:
   test:
@@ -16,6 +17,8 @@ jobs:
       - run:
           name: Run unit tests
           command: yarn test
+
+      - codecov/upload
 
 workflows:
   default-workflow:

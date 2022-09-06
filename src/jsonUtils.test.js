@@ -1,4 +1,4 @@
-import { isObject, isPrimitive } from "./jsonUtils"
+import { containsNull, isObject, isPrimitive } from "./jsonUtils"
 
 describe("jsonUtils#isPrimitive", () => {
   it.each([
@@ -21,5 +21,17 @@ describe("jsonUtils#isObject", () => {
     [[], false],
   ])("given %p returns %p", (value, expected) => {
     expect(isObject(value)).toBe(expected)
+  })
+})
+
+describe("jsonUtils#containsNull", () => {
+  it.each([
+    [null, true],
+    [1, false],
+    ["s", false],
+    [[1, "s", {}], false],
+    [[{foo: [null]}], true],
+  ])("given %p returns %p", (value, expected) => {
+    expect(containsNull(value)).toBe(expected)
   })
 })
